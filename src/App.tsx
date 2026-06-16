@@ -3,9 +3,9 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'motion/react';
-import { Sparkles, Heart, Menu, X, Landmark, Compass, Calendar, Gift, Lock } from 'lucide-react';
+import { Landmark, Compass, Calendar, Heart, Lock, Menu, X } from 'lucide-react';
 
 // Import our modular custom components
 import AudioEngine from './components/AudioEngine';
@@ -15,18 +15,37 @@ import JourneyTimeline from './components/JourneyTimeline';
 import RingCeremonyStory from './components/RingCeremonyStory';
 import AnniversaryHighlights from './components/AnniversaryHighlights';
 import FamilyAppreciation from './components/FamilyAppreciation';
-import WishesMessages from './components/WishesMessages';
 import AnimatedClosing from './components/AnimatedClosing';
 
 export default function App() {
-  const [activeSection, setActiveSection] = useState('welcome');
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   // Smooth scroll helper
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+      // First try standard scrollIntoView
+      try {
+        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      } catch (err) {
+        // Fallback
+        el.scrollIntoView();
+      }
+
+      // Add a robust manual scroll check with header alignment offset (80px for sticky nav)
+      setTimeout(() => {
+        const rect = el.getBoundingClientRect();
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        const targetY = rect.top + scrollTop - 80; // offset of 80px for header
+        
+        // If smooth didn't trigger fully or got stuck, adjust scroll position
+        if (Math.abs(window.scrollY - targetY) > 40) {
+          window.scrollTo({
+            top: targetY,
+            behavior: 'smooth'
+          });
+        }
+      }, 100);
     }
     setMobileMenuOpen(false);
   };
@@ -35,10 +54,9 @@ export default function App() {
   const navLinks = [
     { label: 'Welcome', id: 'welcome-top', icon: Landmark },
     { label: 'Our Story', id: 'timeline-section', icon: Compass },
-    { label: 'Ring Exchange', id: 'exchange-rings-section', idLookup: 'exchange-rings-section', elementId: 'exchange-rings', icon: Lock },
-    { label: 'Schedule & Venue', id: 'highlights-venue', icon: Calendar },
-    { label: 'RSVP Support', id: 'rsvp-family', icon: Heart },
-    { label: 'Guestbook Wishes', id: 'wishes-wall', icon: Gift }
+    { label: 'Ring Exchange', id: 'exchange-rings-section', icon: Lock },
+    { label: 'Celebration Venue', id: 'highlights-venue', icon: Calendar },
+    { label: 'Family Honor', id: 'rsvp-family', icon: Heart }
   ];
 
   return (
@@ -76,35 +94,24 @@ export default function App() {
           {/* Desktop Navigation Links */}
           <div className="hidden lg:flex items-center gap-6">
             {navLinks.map((link, idx) => (
-              <button
+              <a
                 key={idx}
-                onClick={() => {
-                  const targetEl = link.idLookup ? link.idLookup : link.id;
-                  // Handle cases where sections have slightly offset names
-                  const safeId = targetEl === 'exchange-rings-section' ? 'highlights-venue' : targetEl;
-                  
-                  // Simple standard lookup
-                  if (link.id === 'exchange-rings-section') {
-                    document.getElementById('timeline-section')?.scrollIntoView({ behavior: 'smooth' });
-                    // Wait briefly and scroll specifically
-                    setTimeout(() => {
-                      document.getElementById('ring-slider')?.scrollIntoView({ behavior: 'smooth' });
-                    }, 500);
-                  } else {
-                    scrollToId(targetEl);
-                  }
+                href={`#${link.id}`}
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToId(link.id);
                 }}
-                className="font-serif-display text-[10.5px] font-medium tracking-[0.2em] uppercase text-gold-100/70 hover:text-gold-300 transition-colors hover:scale-[1.01] active:scale-95 outline-none pointer-events-auto"
+                className="font-serif-display text-[10.5px] font-medium tracking-[0.2em] uppercase text-gold-100/70 hover:text-gold-300 transition-colors hover:scale-[1.01] active:scale-95 outline-none pointer-events-auto cursor-pointer"
               >
                 {link.label}
-              </button>
+              </a>
             ))}
           </div>
 
           {/* Mobile menu trigger */}
           <button
             onClick={() => setMobileMenuOpen(prev => !prev)}
-            className="lg:hidden w-10 h-10 border border-gold-500/20 rounded-xl flex items-center justify-center text-gold-300 hover:bg-gold-500/5 transition-all outline-none focus:ring-1 focus:ring-gold-400"
+            className="lg:hidden w-10 h-10 border border-gold-500/20 rounded-xl flex items-center justify-center text-gold-300 hover:bg-gold-500/5 transition-all outline-none focus:ring-1 focus:ring-gold-400 cursor-pointer"
             aria-label="Toggle navigation menu"
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
@@ -125,24 +132,19 @@ export default function App() {
                 {navLinks.map((link, idx) => {
                   const Icon = link.icon;
                   return (
-                    <button
+                    <a
                       key={idx}
-                      onClick={() => {
-                        if (link.id === 'exchange-rings-section') {
-                          scrollToId('timeline-section');
-                          setTimeout(() => {
-                            document.getElementById('ring-slider')?.scrollIntoView({ behavior: 'smooth' });
-                          }, 500);
-                        } else {
-                          scrollToId(link.id);
-                        }
+                      href={`#${link.id}`}
+                      onClick={(e) => {
+                        e.preventDefault();
+                        scrollToId(link.id);
                         setMobileMenuOpen(false);
                       }}
-                      className="flex items-center gap-3 w-full p-3 font-serif-display text-xs tracking-widest uppercase text-gold-100 hover:bg-gold-500/10 rounded-xl transition-all select-none text-left"
+                      className="flex items-center gap-3 w-full p-3 font-serif-display text-xs tracking-widest uppercase text-gold-100 hover:bg-gold-500/10 rounded-xl transition-all select-none text-left cursor-pointer"
                     >
                       <Icon className="w-4 h-4 text-gold-400" />
                       {link.label}
-                    </button>
+                    </a>
                   );
                 })}
               </div>
@@ -171,9 +173,6 @@ export default function App() {
 
         {/* Tribute to Families & RSVP Call Triggers */}
         <FamilyAppreciation />
-
-        {/* Wishes and Blessings Guest Postcards Scroll */}
-        <WishesMessages />
 
         {/* Divine Outro Jain Closing and Monogram Frame */}
         <AnimatedClosing />

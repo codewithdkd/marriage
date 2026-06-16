@@ -6,13 +6,6 @@ import { TimelineEvent } from '../types';
 export default function JourneyTimeline() {
   const milestones: TimelineEvent[] = [
     {
-      year: "2024",
-      title: "The Heavenly Alignment",
-      description: "Under the beautiful stars, Prince and Shreyal's life-paths aligned. Introduced through a magical family connection of mutual values, a simple conversation sparked a fire that would light up their futures.",
-      icon: "sparkle",
-      illustrationType: "sparkle"
-    },
-    {
       year: "2025",
       title: "Shared Dreams & Fortresses",
       description: "From cozy talks in historical Gwalior lands to sharing deep personal visions, they realized that they spoke the exact same language of love, respect, and spiritual devotion under the Mahavir blessings.",

@@ -57,7 +57,7 @@ export default function RingCeremonyStory() {
   };
 
   return (
-    <section className="relative py-24 px-4 bg-gradient-to-b from-[#15110A] to-[#100D09] text-white overflow-hidden">
+    <section id="exchange-rings-section" className="relative py-24 px-4 bg-gradient-to-b from-[#15110A] to-[#100D09] text-white overflow-hidden">
       
       {/* Decorative luxury floral pattern shadows */}
       <div className="absolute top-0 right-0 w-80 h-80 bg-gold-400/5 rounded-full filter blur-[100px] pointer-events-none" />
