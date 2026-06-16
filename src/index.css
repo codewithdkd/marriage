@@ -1,0 +1,119 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,500&family=Montserrat:wght@300;400;500;600&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-serif-luxury: "Cormorant Garamond", serif;
+  --font-serif-display: "Cinzel", serif;
+  --font-sans: "Montserrat", sans-serif;
+  
+  --color-gold-50: #fbf7eb;
+  --color-gold-100: #F7E7CE; /* Artistic Flair Champagne/Ivory contrast */
+  --color-gold-200: #eadaa2;
+  --color-gold-300: #dec576;
+  --color-gold-400: #D4AF37; /* Artistic Flair Classic Gold */
+  --color-gold-500: #D4AF37; /* Artistic Flair Classic Gold representation */
+  --color-gold-600: #96712E; /* Artistic Flair Dark gold */
+  --color-gold-700: #8c641b;
+  --color-gold-800: #714e16;
+  --color-gold-900: #3a2b0d;
+  
+  --color-champagne-light: #F7E7CE;
+  --color-champagne-default: #ebdac3;
+  --color-champagne-dark: #bba27d;
+  --color-ivory: #FDFCF7;
+  --color-luxury-charcoal: #0A0A0A; /* Artistic Flair background base */
+}
+
+/* Custom premium scrollbar and gold text effects */
+::selection {
+  background-color: var(--color-gold-200);
+  color: var(--color-luxury-charcoal);
+}
+
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #110e08;
+}
+::-webkit-scrollbar-thumb {
+  background: #c1932e;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #dec576;
+}
+
+/* Gold sparkle animation */
+@keyframes spark {
+  0%, 100% { opacity: 0.3; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Floating animation */
+@keyframes floatUp {
+  0% { transform: translateY(0px) rotate(0deg); opacity: 0; }
+  10% { opacity: 0.6; }
+  90% { opacity: 0.6; }
+  100% { transform: translateY(-120px) rotate(360deg); opacity: 0; }
+}
+
+.animate-float-slow {
+  animation: floatUp 12s linear infinite;
+}
+
+.text-gold-gradient {
+  background: linear-gradient(135deg, #F7E7CE 0%, #D4AF37 50%, #96712E 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-gold-gradient-light {
+  background: linear-gradient(135deg, #ffffff 0%, #F7E7CE 50%, #D4AF37 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-gold-gradient {
+  background: linear-gradient(135deg, #F7E7CE 0%, #D4AF37 50%, #96712E 100%);
+}
+
+.bg-gold-gradient-subtle {
+  background: linear-gradient(135deg, rgba(247, 231, 206, 0.1) 0%, rgba(212, 175, 55, 0.1) 50%, rgba(150, 113, 46, 0.1) 100%);
+}
+
+/* Luxury border styles */
+.border-gold-glow {
+  border-color: rgba(193, 147, 46, 0.3);
+  box-shadow: 0 0 15px rgba(193, 147, 46, 0.1);
+}
+
+.border-gold-glow:hover {
+  border-color: rgba(193, 147, 46, 0.6);
+  box-shadow: 0 0 25px rgba(193, 147, 46, 0.2);
+}
+
+/* Elegant card foil effect */
+.card-foil {
+  background: radial-gradient(circle at 50% 0%, rgba(253, 252, 247, 0.95) 0%, rgba(245, 230, 204, 0.95) 100%);
+  border: 1px solid rgba(193, 147, 46, 0.2);
+}
+
+.card-foil-dark {
+  background: radial-gradient(circle at 50% 0%, rgba(28, 24, 18, 0.98) 0%, rgba(15, 12, 8, 0.99) 100%);
+  border: 1px solid rgba(193, 147, 46, 0.15);
+}
+
+/* Golden particle keyframes */
+@keyframes sparkle-glow {
+  0%, 100% {
+    filter: drop-shadow(0 0 2px rgba(193, 147, 46, 0.4));
+  }
+  50% {
+    filter: drop-shadow(0 0 10px rgba(245, 234, 207, 0.8));
+  }
+}
+
+.sparkle-glow {
+  animation: sparkle-glow 3s infinite ease-in-out;
+}

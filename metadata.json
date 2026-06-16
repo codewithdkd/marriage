@@ -1,0 +1,6 @@
+{
+  "name": "Prince & Shreyal Engagement",
+  "description": "An elegant, highly-animated cinematic invitation and memory website for the modern luxury engagement ceremony of Prince Jain and Shreyal Jain on June 20, 2026.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
