@@ -6,23 +6,23 @@ import { TimelineEvent } from '../types';
 export default function JourneyTimeline() {
   const milestones: TimelineEvent[] = [
     {
-      year: "2025",
-      title: "Shared Dreams & Fortresses",
-      description: "From cozy talks in historical Gwalior lands to sharing deep personal visions, they realized that they spoke the exact same language of love, respect, and spiritual devotion under the Mahavir blessings.",
+      year: "Early 2026",
+      title: "The Divine Alignment",
+      description: "Under the beautiful stars of 2026, destiny worked its charm. Brought together by a respected traditional family setup, Prince and Shreyal were introduced. In this beautiful arranged alliance, a simple meeting rooted in mutual respect, values, and spiritual devotion sparked a profound connection.",
       icon: "compass",
       illustrationType: "stars"
     },
     {
-      year: "Early 2026",
-      title: "The Unified Blessings",
-      description: "The two Jain families connected, merging values, laughter, and spiritual prayers in absolute agreement. The elders poured out their massive ancestral blessings, laying down the foundation for an eternal sacred bond.",
+      year: "Spring 2026",
+      title: "The Unified Family Blessings",
+      description: "The two Jain families met and clicked instantly. In perfect agreement of ancient values, lineage, and spiritual devotion, our elders happily poured out their grand blessings, laying a solid foundation for this holy, lifelong union.",
       icon: "heart",
       illustrationType: "heart"
     },
     {
       year: "June 20, 2026",
       title: "A Promise Made, A Journey Begun",
-      description: "At the grand Hotel Sukh Sagar in Gwalior at 1:00 PM, their hands will unite. Witnessed by standard Jain rituals and loved ones, Prince and Shreyal transition from two individual lines into a singular, eternal loop.",
+      description: "At the grand Hotel Sukh Sagar in Gwalior at 1:00 PM, their hands will unite. Witnessed by traditional Jain rituals, sacred chants, and loved ones, Prince and Shreyal will transition from two traditional paths into a singular, eternal loop of togetherness.",
       icon: "blossom",
       illustrationType: "blossom"
     }
@@ -88,14 +88,14 @@ export default function JourneyTimeline() {
         {/* Section Header */}
         <div className="text-center mb-16">
           <span className="font-serif-luxury text-gold-400 text-xs tracking-[0.3em] uppercase block mb-3">
-            Pure Connection
+            Pure Destiny
           </span>
           <h2 className="font-serif-display text-3xl md:text-5xl font-bold text-gold-gradient-light mb-4">
-            Our Journey of Hearts
+            Our Sacred Alliance
           </h2>
           <div className="w-24 h-[1px] bg-gold-500/30 mx-auto" />
           <p className="max-w-lg mx-auto font-serif-luxury text-gold-100/70 text-sm italic mt-4">
-            "A promise made, a journey begun, and a future filled with love."
+            "A union of two pure souls, blessed by elders, and guided by family harmony."
           </p>
         </div>
 
